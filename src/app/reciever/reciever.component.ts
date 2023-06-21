@@ -11,9 +11,10 @@ import { Subscription } from 'rxjs';
 })
 export class RecieverComponent implements OnInit {
   receivedData!: string;
+  data!: string;
   // private subscription: Subscription;
 
-  constructor(private dataService: DataserviceService) {
+  constructor(private ds: DataserviceService) {
     // this.subscription = this.dataService.getdata().subscribe((data: string) => {
     //   this.receivedData = data;
     //   console.log(this.receivedData);
@@ -24,12 +25,22 @@ export class RecieverComponent implements OnInit {
     // });
   }
 
-  ngOnInit(){
-    this.receivedData = this.dataService.recieve
-   console.log(this.dataService.recieve);
+  // ngOnInit(){
+  //   this.receivedData = this.dataService.recieve
+  //  console.log(this.dataService.recieve);
    
+  // }
+  fgf(newData: string) {
+    return newData
   }
 
+  ngOnInit(): void {
+     this.ds.data$.subscribe((newData: string) => {
+      this.data = newData;
+      console.log(this.data);
+    });
+    this.fgf("dfefv")
+  }
   ngOnDestroy() {
     // this.subscription.unsubscribe();
   }
